@@ -11,20 +11,22 @@ Center using **only** content from 7 official PlacidWay pages. Built with **n8n*
 
 ```
 PlacidWay pages (7 URLs)
-        │  Workflow 1 "Placidway Ingestion" (run once / on schedule)
+        │  Workflow 1 "Placidway Ingestion" (run once to refresh)
         ▼
-HTTP fetch → clean HTML → chunk (~700 chars) → Gemini embeddings (text-embedding-004)
-        → Supabase `placidway_docs` (pgvector)
+List pages → Fetch page → Clean & chunk (~1200 chars) → Embed chunk (Gemini)
+        → Attach embedding → Store in Supabase `placidway_docs` (pgvector)
+        (7 nodes, one straight line — n8n runs each step per item, no loops)
 
 Visitor question
         │  Workflow 2 "Placidway Chatbot" (Chat Trigger webhook)
         ▼
-Embed question → match_documents RPC (top-5 chunks, cosine similarity)
-        → fetch last 6 chat_history rows (follow-up context)
-        → strict grounding prompt → Gemini 2.0 Flash
-        → deterministic source citations appended
-        → save history · log unanswered questions · capture lead emails
-        → chat reply
+Embed question → Retrieve top-5 chunks (match_documents RPC, cosine similarity)
+        → Fetch last 6 chat_history rows (follow-up context)
+        → Build strict grounding prompt → Ask Gemini 2.0 Flash
+        → Format answer (sources + disclaimer appended)
+        → Save history → Log event (answered/unanswered + lead email)
+        → Reply
+        (10 nodes, one straight line — no branches, no loops)
 ```
 
 **Why this stack:**
@@ -68,8 +70,8 @@ Embed question → match_documents RPC (top-5 chunks, cosine similarity)
 - Medical advice → no diagnosis; brief disclaimer + "consult your doctor".
 - Follow-ups resolved via stored chat history.
 - Visitor's language honored (Spanish/Arabic questions answered in kind).
-- Quote interest → asks for name/email; emails saved to `leads`.
-- Unanswered questions logged to `unanswered_log` (content-gap analysis).
+- Quote interest → asks for name/email; emails saved to `chat_events`.
+- Every chat logged to `chat_events` as answered/unanswered (content-gap analysis).
 
 ## Test results
 

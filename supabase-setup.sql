@@ -20,17 +20,12 @@ create table if not exists chat_history (
   created_at timestamptz default now()
 );
 
-create table if not exists unanswered_log (
+create table if not exists chat_events (
   id bigserial primary key,
   session_id text not null,
+  event_type text not null,   -- 'answered' | 'unanswered'
   question text not null,
-  created_at timestamptz default now()
-);
-
-create table if not exists leads (
-  id bigserial primary key,
-  session_id text not null,
-  email text not null,
+  lead_email text,             -- set when the visitor shares an email
   created_at timestamptz default now()
 );
 
