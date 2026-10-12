@@ -2,7 +2,7 @@
 
 A grounded RAG chatbot that answers visitor questions about the ITC Immunity Therapy
 Center using **only** content from 7 official PlacidWay pages. Built with **n8n**
-(no-code), **Supabase pgvector**, and **Google Gemini** (free tier).
+(AI Agent + Tools), **Pinecone** (vector store), and **OpenAI** (chat + embeddings).
 
 > Design principle: a small, reliable bot that says "I don't know" beats a big,
 > impressive-looking one that makes things up.
@@ -10,82 +10,77 @@ Center using **only** content from 7 official PlacidWay pages. Built with **n8n*
 ## Architecture
 
 ```
-PlacidWay pages (7 URLs)
-        │  Workflow 1 "Placidway Ingestion" (run once to refresh)
+7 PlacidWay pages (PDF)
+        │  Indexing flow: "On form submission" (n8n Form Trigger, file upload)
         ▼
-List pages → Fetch page → Clean & chunk (~1200 chars) → Embed chunk (Gemini)
-        → Attach embedding → Store in Supabase `placidway_docs` (pgvector)
-        (7 nodes, one straight line — n8n runs each step per item, no loops)
+Default Data Loader → OpenAI embeddings → Pinecone index "placidway" (namespace "Rag")
 
 Visitor question
-        │  Workflow 2 "Placidway Chatbot" (Chat Trigger webhook)
+        │  Chat flow: "When chat message received" (Chat Trigger, public webhook)
         ▼
-Embed question → Retrieve top-5 chunks (match_documents RPC, cosine similarity)
-        → Fetch last 6 chat_history rows (follow-up context)
-        → Build strict grounding prompt → Ask Gemini 2.0 Flash
-        → Format answer (sources + disclaimer appended)
-        → Save history → Log event (answered/unanswered + lead email)
-        → Reply
-        (10 nodes, one straight line — no branches, no loops)
+AI Agent (Tools Agent, gpt-4o-mini)
+   ├── Chat model: OpenAI gpt-4o-mini (Anthropic Claude Haiku 4.5 attached as fallback)
+   ├── Memory: Simple Memory (buffer window — resolves follow-ups like "what about recovery time?")
+   └── Tool: "Placidway Chatbot" (Pinecone vector store, retrieve-as-tool, topK 5)
+        └── Embeddings: OpenAI embeddings
+        ▼
+Strict system prompt enforces grounding → answer returned by the webhook
 ```
 
 **Why this stack:**
-- **n8n** — my core tool; every step (ingestion, retrieval, grounding, fallback)
-  is visible as a node, which is exactly what the brief asks to see.
-- **Plain HTTP nodes, no LangChain magic** — embeddings, vector search, and chat
-  are plain REST calls (Gemini API, Supabase REST/RPC). Easier to debug, explain,
-  and change live.
-- **Supabase pgvector (free tier)** — one SQL function (`match_documents`) does
-  cosine-similarity retrieval.
-- **Gemini 2.0 Flash (free tier)** — fast, generous free quota, good instruction
-  following for the strict grounding prompt. Temperature 0.2 to reduce creativity.
+- **n8n AI Agent** — the Tools Agent pattern keeps retrieval explicit: the agent
+  must call the Pinecone tool before answering factual questions, and a strict
+  system prompt forbids inventing prices, clinics, or medical facts.
+- **Pinecone (free tier)** — managed vector store; one index (`placidway`,
+  namespace `Rag`), top-5 retrieval per question.
+- **OpenAI** — gpt-4o-mini for chat (fast, cheap, good instruction following),
+  OpenAI embeddings for the vector store. Temperature left default; grounding
+  comes from the system prompt + tool-only facts.
+- **Simple Memory** — short conversation window so follow-up questions resolve
+  against what was just discussed.
 
 ## Setup
 
-1. **Supabase** (free): create a project, run `supabase-setup.sql` in the SQL
-   editor. Copy the project URL and anon key.
-2. **Gemini API key** (free): Google AI Studio → create key.
-3. **n8n**: import `workflows/placidway-ingestion.json` and
-   `workflows/placidway-chatbot.json` (⋯ → Import from file).
-4. In every HTTP node, replace `YOUR_GEMINI_API_KEY`, `YOUR_SUPABASE_URL`,
-   `YOUR_SUPABASE_ANON_KEY` with your values.
-5. Run **Placidway Ingestion** once (Manual Trigger) — fills `placidway_docs`.
-6. Activate **Placidway Chatbot**, copy the Chat Trigger **Production** webhook URL.
-7. Paste the webhook URL into `chat-page/index.html`
-   (`PASTE_YOUR_N8N_CHAT_WEBHOOK_URL_HERE`), host the folder on GitHub Pages
-   (or any static host) → public demo link.
-8. **Refresh**: re-run the ingestion workflow whenever pages change
-   (or put it on an n8n Schedule trigger).
+1. **Pinecone** (free): create index `placidway`, note the API key.
+2. **OpenAI** API key with access to gpt-4o-mini + embeddings.
+3. **n8n**: import `workflows/placidway-chatbot.json`
+   (⋯ → Import from file). Connect your Pinecone and OpenAI credentials.
+4. **Index the knowledge**: open the form trigger ("On form submission"),
+   upload the 7-page source PDF (`Placidway-ITC-7-Pages.pdf`), run once.
+   This fills the Pinecone index. Re-upload to refresh.
+5. Activate the workflow, copy the Chat Trigger **Production** webhook URL.
+6. Paste the webhook URL into `docs/index.html` (`WEBHOOK_URL`),
+   push to GitHub, enable GitHub Pages on `docs/` → public demo link.
 
-## Grounding rules (enforced in the "Build prompt" node)
+## Grounding rules (enforced in the AI Agent system prompt)
 
-- Answer ONLY from retrieved excerpts; every answer cites its source URL(s).
-- Unknown → exact fallback: *"I don't know the answer to that from the ITC
-  pages. Please contact PlacidWay for a free quote."* Never invent prices,
-  clinics, or medical facts.
-- Prices always with currency + page context (e.g. "starting from $18,995").
-- Wrong premise from visitor (e.g. "I heard it costs $50") → politely corrected.
+- Answer ONLY from retrieved Pinecone excerpts; never from training data.
+- Unknown → exact fallback: *"I'm sorry, but I couldn't find verified information
+  about this in the available PlacidWay knowledge base. Please contact PlacidWay
+  directly for accurate information."*
+- Prices always with currency + page context (e.g. "$18,995 USD, out-patient, 3 weeks").
+- Wrong premise from visitor (e.g. "I heard it costs $50") → never agree; correct politely.
 - Booking requests → can't book; point to PlacidWay contact/quote form.
 - Out-of-scope (weather etc.) → politely declined.
-- Medical advice → no diagnosis; brief disclaimer + "consult your doctor".
-- Follow-ups resolved via stored chat history.
-- Visitor's language honored (Spanish/Arabic questions answered in kind).
-- Quote interest → asks for name/email; emails saved to `chat_events`.
-- Every chat logged to `chat_events` as answered/unanswered (content-gap analysis).
+- Medical advice → no diagnosis; recommend a healthcare professional.
+- Follow-ups resolved via Simple Memory.
+- Visitor's language honored where possible.
+- Greetings answered naturally without a retrieval call.
 
 ## Test results
 
-See `test-results.md` (8 assessment questions run against the live demo).
+See `test-results.md` — 8 assessment questions run against the live bot
+(5 pass, 2 partial, 0 fail).
 
-## What I'd improve with another week / known limitations
+## Known limitations / improvements
 
 See `writeup.md`.
 
 ## Files
 
-- `workflows/placidway-ingestion.json` — ingestion workflow (import-ready)
-- `workflows/placidway-chatbot.json` — chat workflow (import-ready)
-- `supabase-setup.sql` — tables + vector search function
-- `chat-page/index.html` — public chat page (GitHub Pages)
-- `scrape.py` — reference polite scraper used to validate content extraction
-- `test-results.md`, `writeup.md`
+- `workflows/placidway-chatbot.json` — the full n8n workflow (chat flow + indexing flow)
+- `docs/index.html` — public chat demo page (GitHub Pages)
+- `Placidway-ITC-7-Pages.pdf` — source-of-truth: full text of the 7 allowed pages
+- `test-results.md` — 8 required test questions with verdicts
+- `writeup.md` — architecture notes and improvement ideas
+- `pages.json`, `scrape.py` — reference scraper used to validate content extraction
