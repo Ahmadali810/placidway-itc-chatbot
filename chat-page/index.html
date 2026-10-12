@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ITC Treatment Assistant — PlacidWay Demo</title>
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<style>
+  body { font-family: system-ui, -apple-system, sans-serif; margin: 0; background: #f8fafc; }
+  header { padding: 20px; background: #0f766e; color: #fff; }
+  header h1 { margin: 0 0 6px; font-size: 20px; }
+  header p { margin: 0; opacity: 0.9; font-size: 14px; }
+  main { max-width: 760px; margin: 24px auto; padding: 0 16px; }
+  #n8n-chat { height: 600px; border: 1px solid #e2e8f0; border-radius: 12px; background: #fff; }
+  footer { text-align: center; color: #64748b; font-size: 12px; padding: 16px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>ITC Immunity Therapy Center — Treatment Assistant</h1>
+  <p>Assessment demo: answers only from official PlacidWay pages. Try asking about treatment prices or what a package includes.</p>
+</header>
+<main>
+  <div id="n8n-chat"></div>
+</main>
+<footer>Built with n8n + Supabase pgvector + Google Gemini. Educational assessment demo.</footer>
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+  createChat({
+    // TODO: paste the Production URL of your n8n "Chat" trigger webhook here
+    webhookUrl: 'PASTE_YOUR_N8N_CHAT_WEBHOOK_URL_HERE',
+    target: '#n8n-chat',
+    mode: 'fullscreen',
+    chatInputKey: 'chatInput',
+    chatSessionKey: 'sessionId',
+    metadata: {},
+    showWelcomeScreen: false,
+    defaultLanguage: 'en',
+    initialMessages: [
+      'Hi! Ask me about ITC Immunity Therapy Center treatments, prices, or packages in Tijuana.'
+    ],
+    i18n: { en: { title: 'ITC Assistant', subtitle: 'Answers from PlacidWay pages only' } }
+  });
+</script>
+</body>
+</html>
