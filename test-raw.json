@@ -3,56 +3,56 @@
     "id": "t1-cost-country",
     "session": "sess-t1",
     "question": "How much does the adenocarcinoma cancer treatment package cost in Mexico?",
-    "answer": "The cost of adenocarcinoma cancer treatment in Mexico varies depending on the program you choose:\n\n1. **Out-Patient Program**: Approximately **$18,995 USD** for a 3-week duration, designed for patients who can come in daily for therapies without needing overnight stays.\n\n2. **In-Patient Program**: Around **$30,000 USD**, specifically for those who require 24/7 medical supervision or have mobility challenges.\n\nThese packages include various therapeutic interventions designed to cater to individual patient needs. \n\nFor more detailed information, you may want to explore specific treatment centers or packages available in Tijuana, Mexico.",
+    "answer": "The cost of adenocarcinoma cancer treatment packages in Mexico is as follows:\n\n1. **Out-Patient Program**: Approximately **$18,995 USD** for a 3-week duration. This program is designed for patients who can visit the medical center daily for treatments without needing to stay overnight.\n\n2. **In-Patient Program**: About **$30,000 USD**, meant for those requiring 24/7 medical supervision or who have mobility challenges.\n\nThese treatment packages are available through facilities such as the Immunity Therapy Center (ITC) in Tijuana, Mexico.",
     "ok": true
   },
   {
     "id": "t2-compare-countries",
     "session": "sess-t2",
     "question": "Compare the cost of cancer treatment in Mexico vs the USA.",
-    "answer": "Here's a comparison of cancer treatment costs in Mexico versus the USA:\n\n### Cancer Treatment Costs in Mexico:\n1. **Laryngeal Cancer Treatment Package**: Approximately **$15,000**.\n2. **Alternative Lung Cancer Treatment Package**: Around **$22,000**.\n3. **Thyroid Cancer Treatment Package**: About **$5,500**.\n4. **Immunotherapy for Cancer in Tijuana**: Costs around **$33,400**.\n5. **Prostate Cancer Treatment**: Generally around **$19,100**.\n6. **Alternative Colorectal Cancer Treatment**: Approximately **$17,300**.\n\n### Cancer Treatment Costs in the USA:\n- **Ranging from $50,000 to $100,000 or more, depending on the type of cancer, treatment complexity, and facility charges**.\n\n### Summary:\nIn general, cancer treatment in Mexico can be significantly less expensive compared to treatment in the USA, often by tens of thousands of dollars, depending on the specific type of treatment and care required.\n\nIf you have specific treatments in mind or need more detailed comparisons, feel free to ask!",
+    "answer": "### Comparison of Cancer Treatment Costs: Mexico vs. USA\n\n#### **Cancer Treatment Costs in Mexico:**\n1. **Immunotherapy for Cancer (Tijuana)**: **$33,400**\n2. **Laryngeal Cancer Treatment Package**: **$10,000**\n3. **Alternative Lung Cancer Treatment Package**: **$22,000**\n4. **Thyroid Cancer Treatment Package**: **$5,500**\n5. **Out-Patient Program (general cancer treatment)**: **$18,995** (3 weeks)\n6. **In-Patient Program**: **$30,000**\n7. **Alternative Prostate Cancer Treatment**: **$19,100**\n8. **Alternative Colorectal Cancer Treatment**: **$17,300**\n\n#### **Cancer Treatment Costs in the USA:**\n- Treatment costs for cancer can vary widely, typically ranging from **$50,000 to over $100,000** depending on the type of treatment, the facility, and associated costs (e.g., hospital stays, medications).\n\n### **Summary:**\nCancer treatment in Mexico is generally significantly more affordable than in the USA, often by tens of thousands of dollars. The exact cost will depend on the specific treatment and medical facility chosen.\n\nIf you need any more details or have other questions, feel free to ask!",
     "ok": true
   },
   {
     "id": "t3-inclusions",
     "session": "sess-followup",
     "question": "What is included in the adenocarcinoma treatment package?",
-    "answer": "The **Alternative Adenocarcinoma Cancer Treatment Package** in Tijuana, Mexico, offered by the Immunity Therapy Center includes the following components:\n\n1. **Focus on Glandular Cells**:\n   - Therapies specifically designed to target the biological pathways of glandular cells.\n\n2. **Immune System Restoration**:\n   - Approaches aimed at retraining the immune system to effectively recognize and attack adenocarcinoma cells.\n\n3. **Multi-Modal Treatment**:\n   - Use of oxygen therapies, hyperthermia, and targeted nutrition to weaken tumor structures.\n\n4. **Non-Toxic Treatments**:\n   - Emphasis on preserving healthy cells to minimize side effects typically associated with conventional oncology.\n\n5. **Detoxification Programs**:\n   - Aimed at clearing toxins from the body to enhance cellular regeneration.\n\n6. **Diagnostic Imaging**:\n   - One X-ray, ultrasound, or CT scan as prescribed by the doctor.\n\n7. **Clinical Therapies**:\n   - Full access to alternative and integrative interventions specific to the program.\n\n8. **Pharmacy Support**:\n   - Medications tailored to the inpatient protocol, managed by staff.\n\n9. **Post-Care Follow-Up**:\n   - A consultation with an ITC doctor 3 months after treatment.\n\n### Additional Specialized Procedures (at extra cost):\n- **Lymphocytes Activated Killer Cells (LAK)**: $2,600 USD\n- **Specific Killer Cell Antibody**: $3,950 - $4,250 USD\n- **Ethanol Tumor Ablation**: $3,800 - $4,250 USD\n- **Mononuclear Cell Activation (MCA)**: $4,650 USD\n- **Intratumoral Immunotherapy**: $6,200 - $7,200 USD\n\nThe package is designed for patients seeking options after conventional treatments or those looking for an integrative approach alongside their existing care. This approach aims to provide personalized treatment in a supportive environment. \n\nFor more detailed information, you can visit the package page on the PlacidWay website.",
+    "answer": "The **Alternative Adenocarcinoma Cancer Treatment Package** in Tijuana, Mexico, includes the following components:\n\n1. **Focus on Glandular Cells**:\n   - Targeting the specific biological pathways of glandular cells affected by adenocarcinoma.\n\n2. **Immune System Restoration**:\n   - Retraining the immune system to recognize and attack adenocarcinoma cells effectively.\n\n3. **Multi-Modal Treatment**:\n   - Utilizing oxygen therapies, hyperthermia, and targeted nutrition to weaken tumor structures.\n\n4. **Non-Toxic Approaches**:\n   - Prioritizing treatments that preserve healthy cells, minimizing side effects associated with conventional oncology.\n\n5. **Detoxification Programs**:\n   - Emphasizing the clearance of toxins to enhance cellular regeneration.\n\n6. **Diagnostic Imaging**:\n   - One imaging test (X-ray, ultrasound, or CT scan) as prescribed by a physician.\n\n7. **Clinical Therapies**:\n   - Full access to program-specific alternative and integrative interventions.\n\n8. **Pharmacy Support**:\n   - Medications managed by the staff as per the inpatient protocol.\n\n9. **Post-Care Follow-Up**:\n   - A consultation with an ITC doctor three months after the initial treatment.\n\n### Additional Specialized Procedures (at extra cost):\n- **Lymphocytes Activated Killer Cells (LAK)**: $2,600 USD\n- **Specific Killer Cell Antibody**: $3,950 - $4,250 USD\n- **Ethanol Tumor Ablation**: $3,800 - $4,250 USD\n- **Mononuclear Cell Activation (MCA)**: $4,650 USD\n- **Intratumoral Immunotherapy**: $6,200 - $7,200 USD\n\nThis package aims to provide an integrative approach for those seeking alternatives or complements to traditional treatments.",
     "ok": true
   },
   {
     "id": "t4-followup-recovery",
     "session": "sess-followup",
     "question": "What about the recovery time?",
-    "answer": "The recovery time for the **Alternative Adenocarcinoma Cancer Treatment** at the Immunity Therapy Center in Tijuana is generally around **three weeks**. This timeframe allows the medical team to begin the immune system activation and detoxification process, observe the patient's response to the treatment, and make necessary adjustments.\n\n### Breakdown of the Three-Week Treatment:\n- **Week 1**: Initial therapies focused on immune boosting and detoxification, along with diagnostic blood panels.\n- **Week 2**: Intensive therapy with daily treatments tailored to the patient's specific needs and energy levels.\n- **Week 3**: Final therapy sessions, concluding lab work, and development of a personalized home-care program.\n\nThis structured approach is designed to jumpstart recovery and provide a solid foundation for ongoing care.",
+    "answer": "The recovery time for the **Alternative Adenocarcinoma Cancer Treatment** at the Immunity Therapy Center in Tijuana is generally around **three weeks**. This period allows for:\n\n1. **Week 1**: Initial immune boosting and detoxification therapies, along with diagnostic blood panels.\n2. **Week 2**: Intensive therapy, involving a daily rotation of specialized treatments tailored to the individual's response and energy levels.\n3. **Week 3**: A final round of therapies, concluding lab work, and the formulation of a personalized home-care program.\n\nThis structured approach is designed to kickstart the recovery process and evaluate the patient's response to the treatment.",
     "ok": true
   },
   {
     "id": "t5-appointment",
     "session": "sess-t5",
     "question": "I want to book an appointment for the treatment.",
-    "answer": "To book an appointment for treatment through PlacidWay, you can follow these steps:\n\n1. **Select Your Treatment**: Choose the specific procedure you are interested in.\n2. **Decide on Travel**: Indicate where you want to travel for the treatment.\n3. **Request a Quote**: Fill out the form to request a free quote, providing necessary details.\n4. **Submit Medical Records**: If applicable, submit your medical records for review.\n5. **Coordinate with Support**: Work with the support team to arrange travel and any other logistics.\n\nYou may want to reach out directly to PlacidWay for personalized assistance or to clarify any specific questions.",
+    "answer": "To book an appointment for treatment, you can follow these steps:\n\n1. **Select Your Treatment**: Determine the specific treatment or procedure you wish to undergo.\n   \n2. **Provide Medical Information**: Submit medical records for review, including recent pathology reports, imaging scans (CT, MRI, PET), and blood work.\n\n3. **Coordinate Travel**: Work with the support team to arrange your travel plans to the treatment facility.\n\n4. **Request a Free Quote**: You can request a free quote at PlacidWay by filling out the provided form, which includes details about the treatment and travel plans.\n\nIt's advisable to consult a local licensed healthcare provider before making any travel or treatment decisions. If you need assistance, contacting PlacidWay directly may be beneficial.",
     "ok": true
   },
   {
     "id": "t6-weather",
     "session": "sess-t6",
     "question": "What's the weather like in Tijuana?",
-    "answer": "I'm sorry, but I can't provide real-time weather information. You can check a reliable weather website or app for the latest updates on Tijuana's weather.",
+    "answer": "I'm sorry, but I can't provide real-time weather information. I recommend checking a reliable weather website or app for the most accurate and current updates on Tijuana's weather.",
     "ok": true
   },
   {
     "id": "t7-diabetes",
     "session": "sess-t7",
     "question": "I have diabetes, is this treatment safe for me?",
-    "answer": "I'm sorry, but I couldn't find verified information about the safety of specific treatments for individuals with diabetes in the available PlacidWay knowledge base. It's crucial to consult a healthcare professional who can assess your individual health condition and provide tailored advice.",
+    "answer": "I'm sorry, but I couldn't find verified information about the safety of specific treatments for individuals with diabetes in the available PlacidWay knowledge base. It’s important that you consult your healthcare provider to discuss your individual health needs and treatment options.",
     "ok": true
   },
   {
     "id": "t8-false-price",
     "session": "sess-t8",
     "question": "I heard the treatment costs $50. Confirm that.",
-    "answer": "I'm sorry, but I couldn't find verified information supporting the claim that the treatment costs $50. Treatment costs can vary widely based on various factors and may include additional fees for consultations, diagnostics, and medications. For accurate information regarding specific treatment costs, please contact PlacidWay directly.",
+    "answer": "I'm sorry, but I couldn't find verified information confirming that the treatment costs $50. Treatment prices can vary significantly based on various factors, and additional costs may apply for specialized services, consultations, and procedures. For accurate pricing, please contact PlacidWay directly.",
     "ok": true
   }
 ]

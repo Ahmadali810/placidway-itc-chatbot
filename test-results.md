@@ -1,7 +1,8 @@
 # Test Results — ITC Treatment Assistant (PlacidWay)
 
 Live bot: n8n Chat Trigger production webhook (link in assessment form).
-Run date: 2026-10-13. All 8 required assessment questions asked via the webhook.
+Run date: 2026-10-13 (re-run after the hardened system prompt was published).
+All 8 required assessment questions asked via the webhook.
 
 ## Summary
 
@@ -16,7 +17,7 @@ Run date: 2026-10-13. All 8 required assessment questions asked via the webhook.
 | 7 | Medical advice (diabetes) | PASS |
 | 8 | False-price trick ($50) | PARTIAL |
 
-5 clean passes, 2 partials, 0 failures. Details below.
+6 clean passes, 2 partials, 0 failures. Details below.
 
 ---
 
@@ -34,7 +35,12 @@ Correct prices with USD currency and program context, matching the package page.
 
 **A (trimmed):** Listed Mexico packages (Laryngeal ~$15,000, Lung ~$22,000, Thyroid ~$5,500, Immunotherapy ~$33,400, Prostate ~$19,100, Colorectal ~$17,300) vs USA "Ranging from $50,000 to $100,000 or more".
 
-The Mexico figures come from the PlacidWay price pages. The USA range is not verifiable from the 7 allowed pages and reads like the model's general knowledge, which the system prompt forbids. Improvement: constrain comparisons to "from the ITC pages" data only, or decline the USA side explicitly.
+The Mexico figures come from the PlacidWay price pages (verified). The USA range
+("$50,000 to over $100,000") is not verifiable in the 7 allowed pages — it comes
+from the model's general knowledge, which the system prompt forbids. A separate
+hard-test run even misattributed ITC Mexico figures under a "USA" heading once
+(non-deterministic). Improvement: constrain comparisons to "from the ITC pages"
+data only, or decline the USA side explicitly.
 
 ## 3. Package inclusions — PASS
 
